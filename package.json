@@ -1,0 +1,34 @@
+{
+  "name": "solid-namespace",
+  "version": "1.0.0",
+  "description": "The namespace NPM will take a starting directory and build out objects and modules that are in a given directory structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solid-Interactive/solid-namespace.git"
+  },
+  "keywords": [
+    "Module",
+    "builder",
+    "namespace",
+    "Solid",
+    "Digital"
+  ],
+  "author": "Travis McHattie <travis.mchattie@soliddigital.com> (https://www.soliddigital.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Solid-Interactive/solid-namespace/issues"
+  },
+  "homepage": "https://github.com/Solid-Interactive/solid-namespace#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "object-path": "^0.11.3"
+  }
+}

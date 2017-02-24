@@ -1,5 +1,5 @@
 {
-  "name": "solid-namespace",
+  "name": "namespace-generator",
   "version": "1.0.1",
   "description": "The namespace NPM will take a starting directory and build out objects and modules that are in a given directory structure.",
   "main": "index.js",

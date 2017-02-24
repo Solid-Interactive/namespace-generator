@@ -1,4 +1,4 @@
-# solid-namespace
+# Namespace Generator
 
 [![Build Status](https://secure.travis-ci.org/Gozala/namespace.png)](http://travis-ci.org/Solid-Interactive/namespace-generator)
 
@@ -27,4 +27,13 @@ namespace(path.join(__dirname, '../my-modules'))
         });
 ```
 
-**See tests for full example**
+See tests for full example
+
+### Built with love by Solid Digital
+
+Solid is addicted to digital, fanatic about mobile and intrigued by the Internet of things.
+
+At Solid, we create digital products and services that will transform our physical world.
+
+Let's chat
+[@http://solid.ws](http://solid.ws)

@@ -1,5 +1,7 @@
 # solid-namespace
 
+[![Build Status](https://secure.travis-ci.org/Gozala/namespace.png)](http://travis-ci.org/Solid-Interactive/namespace-generator)
+
 The namespace NPM will take a starting directory and build out objects and modules that are in a given directory structure. The purpose of this module is
 so that you can establish a directory for various modules and not have to worry about linking them together. Specifically statically referencing modules in an index.js or something equivalent.
 

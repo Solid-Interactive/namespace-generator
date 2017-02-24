@@ -4,12 +4,11 @@ var BB = require('bluebird'),
     fs = BB.promisifyAll(require('fs')),
     objectPath = require('object-path');
 
-module.exports = function(name, startingPath){
+module.exports = function(startingPath){
     var namespace = {};
-    namespace[name] = {};
 
     var readDir = function(inputDir) {
-        var selector = inputDir.replace(startingPath, name).split('/').join('.');
+        var selector = inputDir.replace(startingPath, 'ns').split('/').join('.');
 
         return fs.readdirAsync(inputDir)
             .map(function(fileName) {
@@ -30,6 +29,6 @@ module.exports = function(name, startingPath){
     };
 
     return readDir(startingPath, namespace).then(function(){
-                return namespace;
+                return namespace.ns;
             });
 };

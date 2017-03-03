@@ -1,34 +1,35 @@
 'use strict';
 
-var BB = require('bluebird'),
-    fs = BB.promisifyAll(require('fs')),
+const BB = require('bluebird'),
+    glob = BB.promisify(require('glob')),
+    path = require('path'),
     objectPath = require('object-path');
 
-module.exports = function(startingPath){
-    var namespace = {};
+// starting path should have forward slashes - https://www.npmjs.com/package/glob#windows
+module.exports = function(startingPath, pattern, suffixToRemove){
 
-    var readDir = function(inputDir) {
-        var selector = inputDir.replace(startingPath, 'ns').split('/').join('.');
+    pattern = pattern || '/**/*.js';
+    suffixToRemove = suffixToRemove || '.js';
 
-        return fs.readdirAsync(inputDir)
-            .map(function(fileName) {
-                return fs.statAsync(inputDir + '/' + fileName)
-                    .then(function(stat) {
-                        if (stat.isFile()) {
-                            objectPath.set(
-                                namespace,
-                                selector + '.' + fileName.replace('.js', ''),
-                                require(inputDir + '/' + fileName)
-                            );
-                        }
-                        if (stat.isDirectory()) {
-                            return readDir(inputDir + '/' + fileName).then(function(directory) { return directory; });
-                        }
-                    });
-            });
-    };
+    return glob(startingPath + pattern)
+        .then(paths => {
+            return paths.reduce((namespace, currentPath) => {
 
-    return readDir(startingPath, namespace).then(function(){
-                return namespace.ns;
-            });
+                // Store the final object at namespace.ns
+                const dirname = path.dirname(currentPath.replace(startingPath, 'ns'));
+                const basename = path.basename(currentPath, suffixToRemove);
+
+                objectPath.set(
+                    namespace,
+                    (dirname + '/' + basename).split('/').join('.'),
+                    require(currentPath)
+                );
+
+                return namespace;
+            }, {})
+        })
+        .then(namespace => {
+            return namespace.ns
+        });
+
 };

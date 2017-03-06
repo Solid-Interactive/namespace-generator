@@ -27,7 +27,10 @@ namespace(path.join(__dirname, '../my-modules'))
         });
 ```
 
-See tests for full example
+See tests for full example.
+
+Note that any `.` in the filename after removing the suffix are turned into `_`. This is becuase otherwise they would result
+in nested objects. For example `this.file.js` would be turned into the key `this_file`.
 
 ## Options
 

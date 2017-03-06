@@ -34,7 +34,8 @@ describe('Namespace: Async: Promise', function() {
                 solid.should.deep.equal({
                     'jobs' : 'jobs',
                     email : {
-                        'send' : 'send'
+                        'send' : 'send',
+                        'to_cc': 'do not nest under email.to'
                     }
                 });
                 done();

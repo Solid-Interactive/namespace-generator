@@ -17,7 +17,7 @@ module.exports = function(startingPath, pattern, suffixToRemove){
 
                 // Store the final object at namespace.ns
                 const dirname = path.dirname(currentPath.replace(startingPath, 'ns'));
-                const basename = path.basename(currentPath, suffixToRemove);
+                const basename = path.basename(currentPath, suffixToRemove).replace(/[.]/g,'_');
 
                 objectPath.set(
                     namespace,

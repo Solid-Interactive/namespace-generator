@@ -5,7 +5,7 @@
 The namespace NPM will take a starting directory and build out objects and modules that are in a given directory structure. The purpose of this module is
 so that you can establish a directory for various modules and not have to worry about linking them together. Specifically statically referencing modules in an index.js or something equivalent.
 
-
+The start path should contain all forward slashes, since the module uses [glob](https://www.npmjs.com/package/glob#windows).
 
 ## Usage
 
@@ -27,7 +27,36 @@ namespace(path.join(__dirname, '../my-modules'))
         });
 ```
 
-See tests for full example
+See tests for full example.
+
+Note that any `.` in the filename after removing the suffix are turned into `_`. This is becuase otherwise they would result
+in nested objects. For example `this.file.js` would be turned into the key `this_file`.
+
+## Options
+
+By default the module takes all `.js` files and composes and object out of them. You can optionally pass an alternative
+glob expression, and an optional suffix to remove to create the keys. The globe expression should begin with a forward slash.
+
+e.g.:
+
+```
+services
+    some.service.js
+    index.js
+    email
+        send.service.js
+```
+
+Running `namespace(path.join(__dirname, 'services'), '/**/*.service.js', '.service.js')` would project an object with the keys:
+
+```json
+{
+    "some" : "",
+    "email": {
+        "send" : ""
+    }
+}
+```
 
 ### Built with love by Solid Digital
 

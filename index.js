@@ -30,6 +30,9 @@ module.exports = function(startingPath, pattern, suffixToRemove){
         })
         .then(namespace => {
             return namespace.ns
+        })
+        .catch(function(err) {
+            console.log(err);
         });
 
 };

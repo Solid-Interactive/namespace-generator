@@ -21,6 +21,8 @@ function namespaceGenerator(startingPath, pattern, suffixToRemove){
         })
         .catch(function(err) {
             console.log(err);
+            // don't swallow errors
+            throw err;
         });
 
 }

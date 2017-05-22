@@ -28,7 +28,7 @@ namespace(path.join(__dirname, '../my-modules'))
             ns.dir1.subdir1['test-z']; //should.equal('i am test-z');
         })
         .catch(e => {
-            // be notified off an handle any errors
+            // be notified of and handle any errors
             console.log('e',e);
         });
 ```
